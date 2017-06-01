@@ -1,7 +1,7 @@
 my-movie-db [ Frontend ]
 =======================
 
-This is the vue.js Frontend for [my-movie-db](kael.kaus.uberspace.de/my-movie-db/app/).
+This is the vue.js Frontend for [my-movie-db](http://kael.kaus.uberspace.de/my-movie-db/app/).
 
 Setup
 -----
