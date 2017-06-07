@@ -8,6 +8,12 @@ module.exports = {
     publicPath: '/dist/',
     filename: 'build.js'
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      API_PORT: 61008,
+      API_PATH: "'/'"
+    })
+  ],
   module: {
     rules: [
       {
