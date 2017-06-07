@@ -38,7 +38,7 @@ export default {
         }
       });
 
-      xhr.open("GET", "/search/" + this.searchString);
+      xhr.open("GET", "http://localhost:61008/search/" + this.searchString);
       xhr.send();
     }
   }

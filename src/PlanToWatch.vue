@@ -20,7 +20,7 @@ export default {
     fetchMovies: function() {
       var xhr = new XMLHttpRequest();
       var that = this;
-      xhr.open('GET', "http://kael.kaus.uberspace.de/my-movie-db/api/movies/plan-to-watch", true);
+      xhr.open('GET', "http://localhost:61008/movies/plan-to-watch", true);
       xhr.onload = function () {
         that.movies = JSON.parse(xhr.responseText);
       }

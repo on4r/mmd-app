@@ -14,7 +14,7 @@
               {{ genre_id | toName }}
             </span>
           </p>
-          <p>{{ movie.overview | shorten }}</p>
+          <p>{{ movie.overview }}</p>
         </div>
       </div>
       <div class="panel-footer">
@@ -87,7 +87,7 @@ export default {
           }
         }
       }
-      xhr.open("POST", "http://kael.kaus.uberspace.de/my-movie-db/api/movies", true);
+      xhr.open("POST", "http://localhost:61008/movies", true);
       xhr.setRequestHeader("Content-Type", "application/json");
       xhr.send(JSON.stringify(newEntry));
     },
@@ -106,7 +106,7 @@ export default {
           }
         }
       }
-      xhr.open("PATCH", "http://kael.kaus.uberspace.de/my-movie-db/api/movies/"+movie_id, true);
+      xhr.open("PATCH", "http://localhost:61008/movies/"+movie_id, true);
       xhr.send();
     },
     removeFromList: function(movie_id, event) {
@@ -124,7 +124,7 @@ export default {
           }
         }
       }
-      xhr.open("DELETE", "http://kael.kaus.uberspace.de/my-movie-db/api/movies/"+movie_id, true);
+      xhr.open("DELETE", "http://localhost:61008/movies/"+movie_id, true);
       xhr.send();
     }
   }
