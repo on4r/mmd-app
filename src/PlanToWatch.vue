@@ -20,7 +20,7 @@ export default {
     fetchMovies: function() {
       var xhr = new XMLHttpRequest();
       var that = this;
-      xhr.open('GET', "http://localhost:"+API_PORT+API_PATH+"movies/plan-to-watch", true);
+      xhr.open('GET', "http://" + API_URI + "movies/plan-to-watch", true);
       xhr.onload = function () {
         that.movies = JSON.parse(xhr.responseText);
       }

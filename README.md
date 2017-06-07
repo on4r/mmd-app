@@ -6,10 +6,8 @@ This is the vue.js Frontend for [my-movie-db](http://kael.kaus.uberspace.de/my-m
 
 **Global variables**
 
-The app expects some global variables, defined in `webpack.config.js`.
-
-* `API_PORT` The port on which you will access the API-Backend.
-* `API_PATH` The API path prefix. For example: `/api/` (End with trailing slash).
+Change `API_URI` in *webpack.config.js* to fit your API-Server.
+> End the URI with trailing slash!
 
 **Install Dependencies**
 

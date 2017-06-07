@@ -38,7 +38,7 @@ export default {
         }
       });
 
-      xhr.open("GET", "http://localhost:"+API_PORT+API_PATH+"search/" + this.searchString);
+      xhr.open("GET", "http://" + API_URI + "search/" + this.searchString);
       xhr.send();
     }
   }

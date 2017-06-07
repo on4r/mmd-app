@@ -87,7 +87,7 @@ export default {
           }
         }
       }
-      xhr.open("POST", "http://localhost:"+API_PORT+API_PATH+"movies", true);
+      xhr.open("POST", "http://" + API_URI + "movies", true);
       xhr.setRequestHeader("Content-Type", "application/json");
       xhr.send(JSON.stringify(newEntry));
     },
@@ -106,7 +106,7 @@ export default {
           }
         }
       }
-      xhr.open("PATCH", "http://localhost:"+API_PORT+API_PATH+"movies/"+movie_id, true);
+      xhr.open("PATCH", "http://" + API_URI + "movies/" + movie_id, true);
       xhr.send();
     },
     removeFromList: function(movie_id, event) {
@@ -124,7 +124,7 @@ export default {
           }
         }
       }
-      xhr.open("DELETE", "http://localhost:"+API_PORT+API_PATH+"movies/"+movie_id, true);
+      xhr.open("DELETE", "http://" + API_URI + "movies/" + movie_id, true);
       xhr.send();
     }
   }

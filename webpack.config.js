@@ -10,8 +10,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      API_PORT: 61008,
-      API_PATH: "'/'"
+      API_URI: "'localhost:61008/'"
     })
   ],
   module: {
