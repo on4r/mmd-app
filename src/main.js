@@ -1,6 +1,7 @@
 import Vue          from 'vue'
 import VueRouter    from 'vue-router'
 import Bootstrap    from 'bootstrap'
+import BootstrapCSS from 'bootstrap/dist/css/bootstrap.min.css'
 
 // Load Components:
 import App          from './App.vue'
