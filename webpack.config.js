@@ -35,6 +35,17 @@ module.exports = {
         options: {
           name: '[name].[ext]?[hash]'
         }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          { loader: "style-loader" },
+          { loader: "css-loader" }
+        ]
+      },
+      {
+        test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/,
+        loader: 'file-loader'
       }
     ]
   },
@@ -72,4 +83,18 @@ if (process.env.NODE_ENV === 'production') {
       minimize: true
     })
   ])
+}
+
+if (process.env.APP_BUILD === 'local' || process.env.NODE_ENV === 'development') {
+  module.exports.plugins = [
+    new webpack.DefinePlugin({
+      API_URI: "'localhost:61008/'"
+    })
+  ]
+} else if (process.env.APP_BUILD === 'server') {
+  module.exports.plugins = [
+    new webpack.DefinePlugin({
+      API_URI: "'kael.kaus.uberspace.de/my-movie-db/api/'"
+    })
+  ]
 }

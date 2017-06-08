@@ -1,27 +1,32 @@
-my-movie-db [ Frontend ]
-=======================
+# my-movie-db [ Frontend ]
 
 This is the vue.js Frontend for [my-movie-db](http://kael.kaus.uberspace.de/my-movie-db/app/).
 
-Setup
------
+## Setup
 
-**Environment Variables**
-The server expectes a `.env` file in the root directory ([env2](https://github.com/dwyl/env2)).
-
-    PORT=xxxx
-    TMDB_API_KEY=xxxx
-
->Get you API-Key from [themoviedb.org](https://www.themoviedb.org/documentation/api)
-
-**Install Dependencies**
+### Install Dependencies
 
     npm install
 
-**Build**
+### Run Development Server
 
-    npm run build
+    npm run dev
 
-**Start Server**
+### Build For Production
 
-    node app-server.js
+    npm run build-local
+    npm run build-server
+
+You can define on which URIs you want to access your API when deploying on a server or building locally.  
+To do so, change `API_URI` in *webpack.config.js*.
+
+```js
+// webpack.config.js
+...
+module.exports.plugins = [
+  new webpack.DefinePlugin({
+    API_URI: "'localhost:61008/'"
+  })
+]
+...
+```
