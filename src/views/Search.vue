@@ -9,7 +9,7 @@
 
           <template slot="card-image" v-if="movie.poster_path">
             <figure class="image is-3by4">
-              <img :src="'http://image.tmdb.org/t/p/w400' + movie.poster_path">
+              <img :src="'https://image.tmdb.org/t/p/w400' + movie.poster_path">
             </figure>
           </template>
 

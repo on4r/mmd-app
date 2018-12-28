@@ -55,7 +55,7 @@
             <div class="media">
 
               <div class="media-left" v-if="movie.poster_path">
-                <img :src="'http://image.tmdb.org/t/p/w200' + movie.poster_path">
+                <img :src="'https://image.tmdb.org/t/p/w200' + movie.poster_path">
               </div>
 
               <div class="media-content">

@@ -14,7 +14,7 @@
                 </span>
               </button>
             </div>
-            <img :src="'http://image.tmdb.org/t/p/w200' + movie.poster_path">
+            <img :src="'https://image.tmdb.org/t/p/w200' + movie.poster_path">
           </figure>
         </div>
       </div>
