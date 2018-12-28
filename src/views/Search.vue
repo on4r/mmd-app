@@ -21,7 +21,7 @@
 
           <template slot="card-footer">
             <div class="card-footer-item">
-              <button class="button" @click="planToWatch(movie.id)" :data-id="movie.id">
+              <button class="button" @click="planToWatch(movie.id, $event)" :data-id="movie.id">
                 <span class="icon">
                   <i class="fas fa-bookmark"></i>
                 </span>
@@ -30,7 +30,7 @@
             </div>
 
             <div class="card-footer-item">
-              <button class="button" @click="watched(movie.id)" :data-id="movie.id">
+              <button class="button" @click="watched(movie.id, $event)" :data-id="movie.id">
                 <span class="icon">
                   <i class="fas fa-eye"></i>
                 </span>
@@ -82,11 +82,11 @@ export default {
       })
 
     },
-    planToWatch(id) {
-      this.createMovie(id, false)
+    planToWatch(id, event) {
+      this.createMovie(id, false, event)
     },
-    watched(id) {
-      this.createMovie(id, true)
+    watched(id, event) {
+      this.createMovie(id, true, event)
     }
   },
   created() {

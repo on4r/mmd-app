@@ -2,7 +2,7 @@ import MovieController from '@/controllers/MovieController'
 
 export default {
   methods: {
-    createMovie(id, watched) {
+    createMovie(id, watched, event) {
 
       let target = getButtonNode(event)
 
@@ -23,7 +23,7 @@ export default {
         })
 
     },
-    updateMovie(id, data) {
+    updateMovie(id, data, event) {
 
       let target = getButtonNode(event)
 
@@ -51,7 +51,7 @@ export default {
       })
 
     },
-    removeMovie(id) {
+    removeMovie(id, event) {
 
       let target = getButtonNode(event)
 
@@ -83,7 +83,8 @@ export default {
 
 // Helpers
 function getButtonNode(event) {
-  for (const node of event.path) {
+  const path = event.path || (event.composedPath && event.composedPath())
+  for (const node of path) {
     if (node.nodeName == 'BUTTON') {
       return node
       break

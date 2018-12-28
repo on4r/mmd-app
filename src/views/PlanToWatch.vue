@@ -72,7 +72,7 @@
 
           <template slot="card-footer">
             <div class="card-footer-item">
-              <button class="button is-info is-inverted" @click="markAsWatched(movie)" :data-id="movie.id">
+              <button class="button is-info is-inverted" @click="markAsWatched(movie, $event)" :data-id="movie.id">
                 <span class="icon">
                   <i class="fas fa-eye"></i>
                 </span>
@@ -81,7 +81,7 @@
             </div>
 
             <div class="card-footer-item">
-              <button class="button is-danger is-inverted" @click="remove(movie.id)" :data-id="movie.id">
+              <button class="button is-danger is-inverted" @click="remove(movie.id, $event)" :data-id="movie.id">
                 <span class="icon">
                   <i class="fas fa-trash"></i>
                 </span>
@@ -164,8 +164,8 @@ export default {
       }
 
     },
-    markAsWatched(movie) {
-      this.updateMovie(movie.id, {watched: true})
+    markAsWatched(movie, event) {
+      this.updateMovie(movie.id, {watched: true}, event)
         .then(success => {
           if (success) {
             this.modalMovie = movie
@@ -179,7 +179,7 @@ export default {
         })
     },
     remove(id) {
-      this.removeMovie(id).then(success => {
+      this.removeMovie(id, event).then(success => {
         if (success) {
           this.$refs[`column-${id}`][0].classList.add('fadeOutDown')
           setTimeout(() => {
