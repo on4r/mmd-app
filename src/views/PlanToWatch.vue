@@ -178,7 +178,7 @@ export default {
           }
         })
     },
-    remove(id) {
+    remove(id, event) {
       this.removeMovie(id, event).then(success => {
         if (success) {
           this.$refs[`column-${id}`][0].classList.add('fadeOutDown')
