@@ -4,6 +4,15 @@ $body-background-color: #f7f7f7;
 
 @import "~bulma/bulma";
 
+.button {
+  &.is-loading {
+    &.is-inverted {
+      &::after {
+        border-color: transparent transparent #dbdbdb #dbdbdb !important;
+      }
+    }
+  }
+}
 
 #notifications {
   position: fixed;
