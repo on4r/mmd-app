@@ -5,7 +5,7 @@
 
     <div class="columns is-multiline">
       <div class="column is-4" v-for="movie in results">
-        <movie-card :movie="movie">
+        <movie-card :movie="movie" :key="results">
 
           <template slot="card-image" v-if="movie.poster_path">
             <figure class="image is-3by4">
