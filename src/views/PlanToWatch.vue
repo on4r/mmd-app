@@ -142,7 +142,7 @@ export default {
       return this.movies.sort((a, b) => {
         switch (this.releaseSort) {
           case 0:
-            return new Date(a['created_at']) - new Date(b['created_at'])
+            return new Date(b['created_at']) - new Date(a['created_at'])
           case 1:
             return new Date(b['release_date']) - new Date(a['release_date'])
           case 2:
@@ -219,3 +219,21 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+@import "node_modules/bulma/sass/utilities/mixins.sass";
+
+.media {
+  @include mobile {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.dropdown-menu {
+  @include mobile {
+    left: auto;
+    right: 0;
+  }
+}
+</style>
