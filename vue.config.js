@@ -5,11 +5,11 @@ module.exports = {
   outputDir: process.env.OUTPUT_DIR,
   productionSourceMap: false,
   pwa: {
-    globIgnores: ['.htaccess'],
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'black',
     workboxPluginMode: 'GenerateSW',
     workboxOptions: {
+      exclude: [/\.htaccess$/],
       navigateFallback: process.env.WB_NAVIGATE_FALLBACK,
       clientsClaim: true,
       runtimeCaching: [
