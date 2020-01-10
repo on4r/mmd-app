@@ -16,6 +16,12 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/service-worker.js')
+  })
+}
+
 // import helpers from './helpers'
 
 // const plugin = {
