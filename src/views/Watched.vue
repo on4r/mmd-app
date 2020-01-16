@@ -4,7 +4,7 @@
     <no-results v-if="!movies.length" title="No movies watched?" button="Add some!"></no-results>
 
     <div class="columns is-multiline">
-      <div class="column is-2 animated fast" v-for="movie in movies" :ref="`column-${movie.id}`">
+      <div class="column is-2 animated fast" v-for="movie in movies" :ref="`column-${movie.id}`" :key="movie.id">
         <div class="box">
           <figure class="image is-3by4">
             <div class="overlay" v-if="onLine">
@@ -13,9 +13,9 @@
                   <i class="fas fa-edit"></i>
                 </span>
               </button>
-              <button class="button is-danger bottom-right" @click="remove(movie.id, $event)">
+              <button class="button is-danger bottom-right" @click="confirmRemove(movie.id, $event)">
                 <span class="icon is-small">
-                  <i class="fas fa-trash"></i>
+                  <i class="fas" :class="asksForConfirm(movie.id) ? 'fa-exclamation' : 'fa-trash'"></i>
                 </span>
               </button>
             </div>
