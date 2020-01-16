@@ -7,7 +7,7 @@
       <div class="column is-2 animated fast" v-for="movie in movies" :ref="`column-${movie.id}`">
         <div class="box">
           <figure class="image is-3by4">
-            <div class="overlay">
+            <div class="overlay" v-if="onLine">
               <button class="button" @click="openModal(movie)">
                 <span class="icon is-small">
                   <i class="fas fa-edit"></i>
@@ -39,6 +39,7 @@ import NoResults from '@/components/NoResults'
 import MovieCard from '@/components/MovieCard'
 import MovieModal from '@/components/MovieModal'
 import MovieMethods from '@/mixins/MovieMethods'
+import OnLine from '@/mixins/OnLine'
 import API from '@/services/API'
 
 export default {
@@ -55,7 +56,7 @@ export default {
     NoResults,
     MovieModal
   },
-  mixins: [MovieMethods],
+  mixins: [MovieMethods, OnLine],
   methods: {
     openModal(movie) {
 

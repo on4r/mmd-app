@@ -26,7 +26,7 @@
           <template slot="card-header-icon">
             <div class="dropdown is-left is-hoverable">
 
-              <div class="dropdown-trigger">
+              <div class="dropdown-trigger" v-if="onLine">
                 <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
                   <span class="icon">
                     <i class="fas fa-angle-down" aria-hidden="true"></i>
@@ -70,7 +70,7 @@
             </div>
           </template>
 
-          <template slot="card-footer">
+          <template slot="card-footer" v-if="onLine">
             <div class="card-footer-item">
               <button class="button is-info is-inverted" @click="markAsWatched(movie, $event)" :data-id="movie.id">
                 <span class="icon">
@@ -108,6 +108,7 @@ import NoResults from '@/components/NoResults'
 import MovieCard from '@/components/MovieCard'
 import MovieModal from '@/components/MovieModal'
 import MovieMethods from '@/mixins/MovieMethods'
+import OnLine from '@/mixins/OnLine'
 import API from '@/services/API'
 
 export default {
@@ -125,7 +126,7 @@ export default {
     NoResults,
     MovieModal
   },
-  mixins: [MovieMethods],
+  mixins: [MovieMethods, OnLine],
   computed: {
     releaseClass() {
       switch (this.releaseSort) {
