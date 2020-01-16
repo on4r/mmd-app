@@ -1,7 +1,24 @@
 import MovieController from '@/controllers/MovieController'
 
 export default {
+  data() {
+    return {
+      movieIDtoRemove: 0
+    }
+  },
   methods: {
+    asksForConfirm(id) {
+      if (id == this.movieIDtoRemove)
+        return true
+      else
+        return false
+    },
+    confirmRemove(id, event) {
+      if (id == this.movieIDtoRemove)
+        this.remove(id, event)
+      else
+        this.movieIDtoRemove = id
+    },
     createMovie(id, watched, event) {
 
       let target = getButtonNode(event)

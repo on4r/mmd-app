@@ -20,7 +20,7 @@
     </div>
 
     <div class="columns is-multiline">
-      <div class="column is-8 is-offset-2 animated fast" v-for="movie in sortedMovies" :ref="`column-${movie.id}`">
+      <div class="column is-8 is-offset-2 animated fast" v-for="movie in sortedMovies" :ref="`column-${movie.id}`" :key="movie.id">
         <movie-card :movie="movie">
 
           <template slot="card-header-icon">
@@ -81,11 +81,11 @@
             </div>
 
             <div class="card-footer-item">
-              <button class="button is-danger is-inverted" @click="remove(movie.id, $event)" :data-id="movie.id">
+              <button class="button is-danger is-inverted" @click="confirmRemove(movie.id, $event)" :data-id="movie.id">
                 <span class="icon">
                   <i class="fas fa-trash"></i>
                 </span>
-                <span>Remove</span>
+                <span>{{ asksForConfirm(movie.id) ? 'Sure?' : 'Remove'}}</span>
               </button>
             </div>
           </template>
