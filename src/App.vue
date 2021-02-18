@@ -21,7 +21,7 @@
       <div class="navbar-menu" id="mainNavbar" :class="mobileMenuOpen ? 'is-active' : ''">
 
         <div class="navbar-start" v-if="Auth.isLoggedIn()">
-          <div class="navbar-item" v-if="onLine"><search-bar></search-bar></div>
+          <div class="navbar-item"><search-bar></search-bar></div>
           <router-link class="navbar-item" to="plan-to-watch">Plan to Watch</router-link>
           <router-link class="navbar-item" to="watched">Watched</router-link>
         </div>
@@ -62,7 +62,6 @@
 <script>
 import Auth from '@/services/Auth'
 import SearchBar from '@/components/SearchBar'
-import OnLine from '@/mixins/OnLine'
 
 export default {
   name: 'mmd',
@@ -75,7 +74,6 @@ export default {
   components: {
     SearchBar
   },
-  mixins: [OnLine],
   watch: {
     $route(to, from) {
       this.mobileMenuOpen = false
