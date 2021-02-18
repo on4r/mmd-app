@@ -19,11 +19,13 @@
                 </span>
               </button>
             </div>
-            <img :src="'https://image.tmdb.org/t/p/w200' + movie.poster_path">
+            <img class="blurred" :src="'https://image.tmdb.org/t/p/w200' + movie.poster_path" @load="unblur">
           </figure>
         </div>
       </div>
     </div>
+
+    <div ref="triggerLoad"></div>
 
     <movie-modal
       ref="movieModal"
@@ -46,7 +48,9 @@ export default {
   data() {
     return {
       movies: [],
-      modalMovie: null
+      modalMovie: null,
+      lastPage: null,
+      currentPage: 1
     }
   },
   components: {
@@ -75,20 +79,56 @@ export default {
       })
 
     },
+    loadMoreMovies() {
+
+      this.indexWatchedMovies(this.currentPage).then(movies => {
+        this.movies.push(...movies)
+      })
+
+    },
+    unblur(event) {
+      event.target.classList.add('loaded')
+    }
+  },
+  mounted: function() {
+
+    const callback = ([entry]) => {
+      if (entry.isIntersecting) {
+        if (this.currentPage == this.lastPage) {
+          observer.disconnect()
+          return
+        }
+        this.currentPage++
+        this.loadMoreMovies()
+      }
+    }
+
+    const config = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 1.0
+    }
+
+    const observer = new IntersectionObserver(callback, config)
+    observer.observe(this.$refs['triggerLoad'])
+
   },
   beforeRouteEnter(to, from, next) {
 
-    API.get('movies/watched')
-      .then(response => {
-        if (response.status === 200) {
-          next(vm => {
-            vm.movies = response.data
-          })
-        }
-      })
-      .catch(error => {
-        next(error)
-      })
+    API.get('movies/watched', {
+      params: {
+        page: 1
+      }
+    }).then(response => {
+      if (response.status === 200) {
+        next(vm => {
+          vm.lastPage = response.data.lastPage
+          vm.movies = response.data.data
+        })
+      }
+    }).catch(error => {
+      next(error)
+    })
 
   }
 }
@@ -120,5 +160,12 @@ export default {
     position: absolute;
     bottom: 5px;
     right: 5px;
+  }
+  .blurred {
+    filter: blur(10px);
+    transition: filter 0.3s ease-out;
+  }
+  .blurred.loaded {
+    filter: blur(0);
   }
 </style>

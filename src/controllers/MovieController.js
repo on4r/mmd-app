@@ -2,6 +2,24 @@ import API from '@/services/API'
 import Notifications from '@/services/Notifications'
 
 const MovieController = {
+  index(type, page) {
+
+    return API.get(`movies/${type}`, {
+      params: {
+        page: page
+      }
+    }).then(response => {
+      if (response.status === 200) {
+        return response.data.data
+      } else {
+        return []
+      }
+    })
+    .catch(error => {
+      throw error
+    })
+
+  },
   search(query) {
 
     return API.get(`search/${query}`)
@@ -21,7 +39,7 @@ const MovieController = {
 
     return API.post('movies', { id, watched })
       .then(response => {
-        return (response.status === 200) ? true : false
+        return response.status === 200
       })
       .catch(error => {
         Notifications.error(error.response.data.message)
@@ -32,7 +50,7 @@ const MovieController = {
 
     return API.patch(`movies/${id}`, { watched, rating, comment })
       .then(response => {
-        return (response.status === 200) ? true : false
+        return response.status === 200
       })
       .catch(error => {
         Notifications.error(error.response.data.message)
@@ -43,7 +61,7 @@ const MovieController = {
 
     return API.delete(`movies/${id}`)
       .then(response => {
-        return (response.status === 200) ? true : false
+        return response.status === 200
       })
       .catch(error => {
         Notifications.error(error.response.data.message)

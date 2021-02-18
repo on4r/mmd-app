@@ -77,6 +77,9 @@ export default {
 
       })
 
+    },
+    indexWatchedMovies(page) {
+      return MovieController.index('watched', page).then(movies => movies)
     }
   }
 }
