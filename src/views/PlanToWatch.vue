@@ -165,18 +165,13 @@ export default {
 
     },
     markAsWatched(movie, event) {
-      this.updateMovie(movie.id, {watched: true}, event)
-        .then(success => {
-          if (success) {
-            this.modalMovie = movie
-            this.$refs.movieModal.open(onClose => {
-              this.$refs[`column-${movie.id}`][0].classList.add('fadeOutRight')
-              setTimeout(() => {
-                this.$refs[`column-${movie.id}`][0].remove()
-              }, 800)
-            })
-          }
-        })
+      this.modalMovie = movie
+      this.$refs.movieModal.open(() => {
+        this.$refs[`column-${movie.id}`][0].classList.add('fadeOutRight')
+        setTimeout(() => {
+          this.$refs[`column-${movie.id}`][0].remove()
+        }, 800)
+      })
     },
     remove(id, event) {
       this.removeMovie(id, event).then(success => {

@@ -68,14 +68,14 @@ export default {
       this.active = true
       this.callback = callback
     },
-    close() {
+    close(cancel = true) {
       clearTimeout(this.closeAfterSaveTimout)
       this.$refs.theModal.classList.add('fadeOut')
       setTimeout(() => {
         this.active = false
         this.$refs.saveButton.innerText = 'Save'
         this.$refs.saveButton.classList.remove('tada')
-        if (typeof this.callback === 'function') {
+        if (typeof this.callback === 'function' && !cancel) {
           this.callback()
         }
       }, 500)
@@ -93,7 +93,7 @@ export default {
           this.$refs.saveButton.innerText = 'Saved!'
           this.$refs.saveButton.classList.add('tada')
           this.closeAfterSaveTimout = setTimeout(() => {
-            this.close()
+            this.close(false)
           }, 2000)
         }
       })
