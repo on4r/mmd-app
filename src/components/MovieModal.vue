@@ -85,6 +85,7 @@ export default {
       this.loading = true
 
       MovieController.update(this.movie.id, {
+        watched: true,
         rating: this.movie.rating,
         comment: this.movie.comment
       }).then(success => {
