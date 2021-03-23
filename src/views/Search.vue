@@ -5,7 +5,7 @@
 
     <div class="columns is-multiline">
       <div class="column is-4" v-for="movie in results">
-        <movie-card :movie="movie" :key="results">
+        <movie-card :movie="movie" :key="movie.id">
 
           <template slot="card-image" v-if="movie.poster_path">
             <figure class="image is-3by4">
@@ -30,7 +30,13 @@
             </div>
 
             <div class="card-footer-item">
-              <button class="button" @click="watched(movie.id, $event)" :data-id="movie.id">
+              <button class="button" @click="rewatch(movie.mmdbID, $event)" :data-id="movie.mmdbID" v-if="toRewatch.includes(movie.mmdbID)">
+                <span class="icon">
+                  <i class="fas fa-redo"></i>
+                </span>
+                <span>Rewatch</span>
+              </button>
+              <button class="button" @click="watched(movie.id, $event)" :data-id="movie.id" v-else>
                 <span class="icon">
                   <i class="fas fa-eye"></i>
                 </span>
@@ -57,7 +63,8 @@ export default {
   name: 'search',
   data() {
     return {
-      results: []
+      results: [],
+      toRewatch: []
     }
   },
   components: {
@@ -83,10 +90,25 @@ export default {
 
     },
     planToWatch(id, event) {
-      this.createMovie(id, false, event)
+      this.createMovie(id, false, event).then(res => {
+        if (res.rewatch) {
+          let movie = this.results.find(movie => movie.id === id)
+          movie.mmdbID = res.id
+          this.toRewatch.push(res.id)
+        }
+      })
     },
     watched(id, event) {
-      this.createMovie(id, true, event)
+      this.createMovie(id, true, event).then(res => {
+        if (res.rewatch) {
+          let movie = this.results.find(movie => movie.id === id)
+          movie.mmdbID = res.id
+          this.toRewatch.push(res.id)
+        }
+      })
+    },
+    rewatch(id, event) {
+      this.updateMovie(id, { watched: false }, event)
     }
   },
   created() {

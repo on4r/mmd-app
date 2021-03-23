@@ -39,10 +39,16 @@ const MovieController = {
 
     return API.post('movies', { id, watched })
       .then(response => {
-        return response.status === 200
+        return {
+          status: response.status
+        }
       })
       .catch(error => {
         Notifications.error(error.response.data.message)
+        return {
+          rewatch: error.response.data.rewatch,
+          id: error.response.data.id
+        }
       })
 
   },

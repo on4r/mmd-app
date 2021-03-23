@@ -9,17 +9,19 @@ export default {
       target.classList.toggle('is-loading')
       disableSiblings(target, true)
 
-      MovieController
+      return MovieController
         .create(id, watched)
-        .then(success => {
-          if (success) {
+        .then(res => {
+          if (res.status === 200) {
             target.disabled = true
             target.classList.add('is-success')
           }
+          return res
         })
-        .then(() => {
+        .then(res => {
           target.classList.toggle('is-loading')
           disableSiblings(target, false)
+          return res
         })
 
     },
